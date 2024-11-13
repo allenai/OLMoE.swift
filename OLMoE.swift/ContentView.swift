@@ -300,6 +300,8 @@ struct ActivityViewController: UIViewControllerRepresentable {
 struct ContentView: View {
     @StateObject private var downloadManager = BackgroundDownloadManager.shared
     @State private var bot: Bot?
+    @State private var showInfoPage : Bool = true
+    @State private var infoPageIndex: Int = 0
 
     var body: some View {
         VStack {
@@ -314,9 +316,30 @@ struct ContentView: View {
                 initializeBot()
             }
         }
+        .popover(isPresented: $showInfoPage) {
+            let page = infoPages[infoPageIndex]
+            InfoPage(
+                title: page.title,
+                message: page.text,
+                confirm: InfoPage.PageButton(
+                    text: page.buttonText,
+                    onDismiss: {
+                        nextInfoPage()
+                    })
+            )
+            .presentationBackground(Color("BackgroundColor"))
+        }
         .onAppear(perform: checkModelAndInitializeBot)
     }
 
+    private func nextInfoPage() {
+        infoPageIndex = min(infoPages.count, infoPageIndex + 1)
+        if infoPageIndex >= infoPages.count {
+            infoPageIndex = 0
+            showInfoPage = false
+        }
+    }
+        
     private func checkModelAndInitializeBot() {
         if FileManager.default.fileExists(atPath: Bot.modelFileURL.path) {
             downloadManager.isModelReady = true
