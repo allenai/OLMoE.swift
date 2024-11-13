@@ -77,14 +77,15 @@ open class LLM: ObservableObject {
         params = llama_context_default_params()
         let processorCount = Int32(ProcessInfo().processorCount)
         self.maxTokenCount = Int(min(maxTokenCount, llama_n_ctx_train(model)))
+        print("------- \(self.maxTokenCount)")
 //        params.seed = seed
         params.n_ctx = UInt32(self.maxTokenCount)
         params.n_batch = params.n_ctx
         params.n_threads = processorCount
         params.n_threads_batch = processorCount
         self.topK = topK
-        self.topP = topP
-        self.temp = temp
+        self.topP = 1.0 //topP
+        self.temp = 0.0 //temp
         self.historyLimit = historyLimit
         self.model = model
         self.history = history
@@ -346,10 +347,26 @@ open class LLM: ObservableObject {
         guard isAvailable else { return }
         isAvailable = false
         self.input = input
-        let processedInput = preprocess(input, history)
-        let response = getResponse(from: processedInput)
+        
+        //let processedInput = preprocess(input, history)
+        //let response = getResponse(from: processedInput)
+        //let output = await makeOutputFrom(response)
+        //history += [(.user, input), (.bot, output)]
+        
+        // Fake output for UI testing
+        history += [(.user, input)]
+        let response = AsyncStream { continuation in
+            Task {
+                for i in 0...5 {
+                    continuation.yield("\(i) - \(input)\n")
+                    try? await Task.sleep(nanoseconds: 1_000_000_000 / 2)
+                }
+                continuation.finish()
+            }
+        }
         let output = await makeOutputFrom(response)
-        history += [(.user, input), (.bot, output)]
+        history += [(.bot, output)]
+        
         let historyCount = history.count
         if historyLimit < historyCount {
             history.removeFirst(min(2, historyCount))

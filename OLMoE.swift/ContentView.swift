@@ -49,8 +49,9 @@ struct BotView: View {
     func respond() {
         isGenerating = true
         Task {
-            await bot.respond(to: input)
+            let tempInput = input
             input = "" // Clear the input after sending
+            await bot.respond(to: tempInput)
             scrollToBottom = true
         }
         isGenerating = false
@@ -207,7 +208,7 @@ struct BotView: View {
                 }
                 Spacer()
                 
-                HStack(alignment: .bottom, spacing: 8) {
+                VStack(alignment: .leading, spacing: 8) {
                     ZStack(alignment: .leading) {
                         TextEditor(text: $input)
                             .frame(height: max(40, textEditorHeight))
@@ -232,7 +233,7 @@ struct BotView: View {
                     .onPreferenceChange(ViewHeightKey.self) { height in
                         self.textEditorHeight = min(max(40, height), 120)
                     }
-                    VStack(spacing: 8) {
+                    HStack(spacing: 8) {
                         Button(action: shareConversation) {
                             Image(systemName: "square.and.arrow.up")
                                 .foregroundColor(Color("TextColor"))
