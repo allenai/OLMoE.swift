@@ -103,36 +103,51 @@ public struct ChatView: View {
     @Binding var isGenerating: Bool
     @Binding var isScrolledToBottom: Bool
     @State private var scrollState = ScrollState()
-
+    @StateObject private var keyboardResponder = KeyboardResponder()
+    @State var id = UUID()
+    
     public var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 10) {
-                // History
-                ForEach(history) { chat in
-                    if !chat.content.isEmpty {
-                        switch chat.role {
-                        case .user:
-                            UserChatBubble(text: chat.content)
-                        case .bot:
-                            BotChatBubble(text: chat.content)
+        ScrollViewReader { proxy in
+            ScrollView {
+                VStack(alignment: .leading, spacing: 10) {
+                    // History
+                    ForEach(history) { chat in
+                        if !chat.content.isEmpty {
+                            switch chat.role {
+                            case .user:
+                                UserChatBubble(text: chat.content)
+                            case .bot:
+                                BotChatBubble(text: chat.content)
+                            }
                         }
                     }
+                    
+                    // Current output
+                    if isGenerating {
+                        BotChatBubble(text: output, isGenerating: isGenerating)
+                    }
+                    
+                    Color.clear.frame(height: 1).id(ChatView.BottomID)
                 }
-
-                // Current output
-                if isGenerating {
-                    BotChatBubble(text: output, isGenerating: isGenerating)
-                }
-
-                Color.clear.frame(height: 1).id(ChatView.BottomID)
+                .font(.body.monospaced())
+                .foregroundColor(Color("TextColor"))
+                .background(scrollTracker())
             }
-            .font(.body.monospaced())
-            .foregroundColor(Color("TextColor"))
-            .background(scrollTracker())
+            .background(scrollHeightTracker())
+            .coordinateSpace(name: ScrollState.ScrollSpaceName)
+            .preferredColorScheme(.dark)
+            .onChange(of: keyboardResponder.keyboardHeight) { _,newHeight in
+                let keyboardIsVisible = newHeight > 0
+                if keyboardIsVisible {
+                    id = UUID() // Trigger refresh by changing the id
+                }
+            }
+            .onAppear() {
+                // Scroll on refresh
+                proxy.scrollTo(ChatView.BottomID, anchor: .bottom)
+            }
+            .id(id)
         }
-        .background(scrollHeightTracker())
-        .coordinateSpace(name: ScrollState.ScrollSpaceName)
-        .preferredColorScheme(.dark)
     }
 
     @ViewBuilder

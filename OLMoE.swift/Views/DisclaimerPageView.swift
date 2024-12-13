@@ -91,8 +91,10 @@ struct DisclaimerPage: View {
                         .multilineTextAlignment(.leading)
                 }
 
-                ForEach(titleText) { t in
-                    HeaderTextPairView(header: t.header, text: t.text)
+                VStack(alignment: .leading, spacing: 20) {
+                    ForEach(titleText) { t in
+                        HeaderTextPairView(header: t.header, text: t.text)
+                    }
                 }
 
                 HStack(spacing: 12) {
