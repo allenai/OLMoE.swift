@@ -19,5 +19,10 @@
 		<string>Manrope-VariableFont_wght.ttf</string>
 		<string>pp-telegraf.ttf</string>
 	</array>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>iphone-performance-gaming-tier</string>
+		<string>ipad-minimum-performance-m1</string>
+	</array>
 </dict>
 </plist>
