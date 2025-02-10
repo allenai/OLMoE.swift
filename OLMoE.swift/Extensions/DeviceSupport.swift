@@ -20,6 +20,8 @@ func deviceHasEnoughRam() -> Bool {
 func isDeviceSupported() -> Bool {
     #if targetEnvironment(simulator)
     return true
+    #elseif targetEnvironment(macCatalyst)
+    return true
     #else
     return deviceHasEnoughRam()
     #endif

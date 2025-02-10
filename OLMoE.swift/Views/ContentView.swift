@@ -78,7 +78,11 @@ struct BotView: View {
 
     func respond() {
         isGenerating = true
-        isTextEditorFocused = false
+        #if targetEnvironment(macCatalyst)
+            isTextEditorFocused = true
+        #else
+            isTextEditorFocused = false
+        #endif
         stopSubmitted = false
         let originalInput = input.trimmingCharacters(in: .whitespacesAndNewlines)
         input = "" // Clear the input after sending
@@ -91,6 +95,9 @@ struct BotView: View {
                 bot.setOutput(to: "")
                 isGenerating = false
                 stopSubmitted = false
+                #if targetEnvironment(macCatalyst)
+                    isTextEditorFocused = true  // Mac Only. Re-focus after response
+                #endif
             }
         }
     }
@@ -216,45 +223,38 @@ struct BotView: View {
 
     @ViewBuilder
     func shareButton() -> some View {
-        Button(action: {
-            isTextEditorFocused = false
-            // disclaimerHandlers.setActiveDisclaimer(Disclaimers.ShareDisclaimer())
-            // disclaimerHandlers.setCancelAction({ disclaimerHandlers.setShowDisclaimerPage(false) })
-            // disclaimerHandlers.setAllowOutsideTapDismiss(true)
-            // disclaimerHandlers.setConfirmAction({ shareConversation() })
-            // disclaimerHandlers.setShowDisclaimerPage(true)
-            showTextShareSheet = true
-        }) {
-            HStack {
-                if isSharing {
-                    SpinnerView(color: Color("AccentColor"))
-                } else {
-                    Image(systemName: "square.and.arrow.up")
-                }
-            }
-            .foregroundColor(Color("TextColor"))
+        if isSharing {
+            SpinnerView(color: Color("AccentColor"))
+        } else {
+            ToolbarButton(action: {
+                isTextEditorFocused = false
+                // disclaimerHandlers.setActiveDisclaimer(Disclaimers.ShareDisclaimer())
+                // disclaimerHandlers.setCancelAction({ disclaimerHandlers.setShowDisclaimerPage(false) })
+                // disclaimerHandlers.setAllowOutsideTapDismiss(true)
+                // disclaimerHandlers.setConfirmAction({ shareConversation() })
+                // disclaimerHandlers.setShowDisclaimerPage(true)
+                showTextShareSheet = true
+            }, imageName: "square.and.arrow.up")
+             .disabled(isSharing || bot.history.isEmpty || isGenerating)
+             .opacity(isSharing || bot.history.isEmpty || isGenerating ? 0.5 : 1)
         }
-        .disabled(isSharing || bot.history.isEmpty || isGenerating)
-        .opacity(isSharing || bot.history.isEmpty || isGenerating ? 0.5 : 1)
     }
 
     @ViewBuilder
     func trashButton() -> some View {
-        Button(action: {
+        ToolbarButton(action: {
             isTextEditorFocused = false
             isDeleteHistoryConfirmationVisible = true
             stop()
-        }) {
-            Image(systemName: "trash.fill")
-                .foregroundColor(Color("TextColor"))
-        }.alert("Delete history?", isPresented: $isDeleteHistoryConfirmationVisible, actions: {
-            Button("Delete", action: deleteHistory)
-            Button("Cancel", role: .cancel) {
-                isDeleteHistoryConfirmationVisible = false
-            }
-        })
-        .disabled(isDeleteButtonDisabled)
-        .opacity(isDeleteButtonDisabled ? 0.5 : 1)
+        }, imageName: "trash.fill")
+            .alert("Delete history?", isPresented: $isDeleteHistoryConfirmationVisible, actions: {
+                Button("Delete", action: deleteHistory)
+                Button("Cancel", role: .cancel) {
+                    isDeleteHistoryConfirmationVisible = false
+                }
+            })
+            .disabled(isDeleteButtonDisabled)
+            .opacity(isDeleteButtonDisabled ? 0.5 : 1)
     }
 
     @ViewBuilder
@@ -272,6 +272,7 @@ struct BotView: View {
                     .background(Color("LightGreen"))
                     .clipShape(Circle())
             }
+            .buttonStyle(.plain)
             .opacity(shouldShowScrollButton() ? 1 : 0)
             .transition(.opacity)
             .animation(
@@ -367,8 +368,10 @@ struct BotView: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
-                shareButton()
-                trashButton()
+                HStack(spacing: 20) {
+                    shareButton()
+                    trashButton()
+                }
             }
         }
     }
@@ -466,8 +469,6 @@ struct ContentView: View {
             .sheet(isPresented: $disclaimerState.showDisclaimerPage) {
                 SheetWrapper {
                     DisclaimerPage(
-                        allowOutsideTapDismiss: disclaimerState.allowOutsideTapDismiss,
-                        isPresented: $disclaimerState.showDisclaimerPage,
                         message: disclaimerState.activeDisclaimer?.text ?? "",
                         title: disclaimerState.activeDisclaimer?.title ?? "",
                         titleText: disclaimerState.activeDisclaimer?.headerTextContent ?? [],

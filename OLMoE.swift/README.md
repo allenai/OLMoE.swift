@@ -39,7 +39,7 @@ Default values are provided in `BuildConfig/project-defaults.xcconfig`.
     See [Enabling the Sharing Feature](#enabling-the-sharing-feature) for more information.
 
     - The `DEVELOPMENT_TEAM_ID` is your team ID you located in step 1.
-    Building to a physical device requires a development team ID.
+    Building to a physical device or macOS requires a development team ID.
 
     - The `BUNDLE_VERSION` is the number used to identify the [current project version](https://developer.apple.com/documentation/xcode/build-settings-reference#Current-Project-Version) and the iteration of the [bundle version](https://developer.apple.com/documentation/bundleresources/information-property-list/cfbundleversion).
 
@@ -98,5 +98,19 @@ Requires an _AWS Lambda function_
 1) Select your device in the device dropdown menu.
 
     ![Select Device](../doc_assets/Select_Device.png)
+
+1) Run the project.
+
+### Running on MacOS
+
+Our project uses Mac Catalyst, a compatibility layer letting our iOS code base run natively on macOS. A valid Development Team ID is required.
+
+1) In the Signing & Capabilities section for MacOS, click on "Enable Development Signing"
+
+    ![Enable Development Signing](../doc_assets/Enable_Development_Signing_MacOS.png)
+
+1) Select "My Mac (Mac Catalyst)" in the device dropdown menu.
+
+    ![Select Device](../doc_assets/Select_Device_MacOS.png)
 
 1) Run the project.

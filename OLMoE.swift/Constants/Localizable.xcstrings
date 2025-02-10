@@ -63,6 +63,28 @@
     "Flush Model" : {
 
     },
+    "Message OLMoE" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Message OLMoE"
+          }
+        }
+      }
+    },
+    "Message OLMoE (Press Return to send)" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Message OLMoE (Press Return to send)"
+          }
+        }
+      }
+    },
     "However, you can try using OLMoE at the Ai2 Playground. This option does not download the model file to your device, but instead submits user input to a hosted version of OLMoE to remotely generate responses." : {
 
     },
@@ -102,7 +124,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hello! I’m OLMoE, a fully open, state-of-the-art language model running locally on your device."
+            "value" : "Hello! I'm OLMoE, a fully open, state-of-the-art language model running locally on your device."
           }
         }
       }

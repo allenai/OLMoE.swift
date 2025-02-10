@@ -98,12 +98,6 @@ struct DisclaimerPage: View {
     /// A typealias for a button configuration.
     typealias PageButton = (text: String, onTap: () -> Void)
 
-    /// A flag indicating whether outside tap dismiss is allowed.
-    let allowOutsideTapDismiss: Bool
-
-    /// A binding that indicates whether the disclaimer page is presented.
-    @Binding var isPresented: Bool
-
     /// The message content of the disclaimer.
     let message: String
 
@@ -162,8 +156,6 @@ struct DisclaimerPage: View {
 
 #Preview("DisclaimerPage") {
     DisclaimerPage(
-        allowOutsideTapDismiss: false,
-        isPresented: .constant(true),
         message: "Message",
         title: "Title",
         titleText: [HeaderTextPair](),
