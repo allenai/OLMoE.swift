@@ -232,12 +232,18 @@ struct BotView: View {
         } else {
             ToolbarButton(action: {
                 isTextEditorFocused = false
-                // disclaimerHandlers.setActiveDisclaimer(Disclaimers.ShareDisclaimer())
-                // disclaimerHandlers.setCancelAction({ disclaimerHandlers.setShowDisclaimerPage(false) })
-                // disclaimerHandlers.setAllowOutsideTapDismiss(true)
-                // disclaimerHandlers.setConfirmAction({ shareConversation() })
-                // disclaimerHandlers.setShowDisclaimerPage(true)
-                showTextShareSheet = true
+
+                if Locale.isCountrySupported() {
+                    // For supported countries, use the disclaimer and shareConversation flow
+                    disclaimerHandlers.setActiveDisclaimer(Disclaimers.ShareDisclaimer())
+                    disclaimerHandlers.setCancelAction({ disclaimerHandlers.setShowDisclaimerPage(false) })
+                    disclaimerHandlers.setAllowOutsideTapDismiss(true)
+                    disclaimerHandlers.setConfirmAction({ shareConversation() })
+                    disclaimerHandlers.setShowDisclaimerPage(true)
+                } else {
+                    // For unsupported countries, use the text share sheet
+                    showTextShareSheet = true
+                }
             }, imageName: "square.and.arrow.up")
              .disabled(isSharing || bot.history.isEmpty || isGenerating)
              .opacity(isSharing || bot.history.isEmpty || isGenerating ? 0.5 : 1)
