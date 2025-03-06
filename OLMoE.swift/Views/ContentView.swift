@@ -233,7 +233,7 @@ struct BotView: View {
             ToolbarButton(action: {
                 isTextEditorFocused = false
 
-                if Locale.isCountrySupported() {
+                if FeatureFlags.serverSideSharing {
                     // For supported countries, use the disclaimer and shareConversation flow
                     disclaimerHandlers.setActiveDisclaimer(Disclaimers.ShareDisclaimer())
                     disclaimerHandlers.setCancelAction({ disclaimerHandlers.setShowDisclaimerPage(false) })
