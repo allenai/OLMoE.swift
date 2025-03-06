@@ -32,6 +32,7 @@
 
 /* Begin PBXFileReference section */
 		48194C372D14D7C500E76532 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		4877E8992D7A4DB200C446E8 /* OLMoE_swift_macCatalyst.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OLMoE_swift_macCatalyst.entitlements; sourceTree = "<group>"; };
 		4885754C2D77756300F7A36F /* InferenceMetrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InferenceMetrics.swift; sourceTree = "<group>"; };
 		489710A12D14D22600F0DB43 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.markdown; };
 		489FD75B2CF13E4E0011E908 /* AttestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttestManager.swift; sourceTree = "<group>"; };
@@ -117,6 +118,7 @@
 				A0117FEB2C990EAB00035007 /* OLMoE_swiftApp.swift */,
 				A0117FEF2C990EAC00035007 /* Assets.xcassets */,
 				A0117FF12C990EAC00035007 /* OLMoE_swift.entitlements */,
+				4877E8992D7A4DB200C446E8 /* OLMoE_swift_macCatalyst.entitlements */,
 				A0117FF22C990EAC00035007 /* Preview Content */,
 			);
 			path = OLMoE.swift;
@@ -390,6 +392,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = OLMoE.swift/OLMoE_swift.entitlements;
+				"CODE_SIGN_ENTITLEMENTS[sdk=iphone*]" = OLMoE.swift/OLMoE_swift.entitlements;
+				"CODE_SIGN_ENTITLEMENTS[sdk=macosx*]" = OLMoE.swift/OLMoE_swift_macCatalyst.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "-";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
@@ -439,6 +443,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = OLMoE.swift/OLMoE_swift.entitlements;
+				"CODE_SIGN_ENTITLEMENTS[sdk=iphone*]" = OLMoE.swift/OLMoE_swift.entitlements;
+				"CODE_SIGN_ENTITLEMENTS[sdk=macosx*]" = OLMoE.swift/OLMoE_swift_macCatalyst.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
