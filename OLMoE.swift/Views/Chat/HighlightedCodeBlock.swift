@@ -22,7 +22,7 @@ struct HighlightedCodeBlock: View {
             HStack {
                 if let displayLanguage = displayLanguage {
                     Text(displayLanguage)
-                        .font(.system(size: 14))
+                        .font(.system(size: AppFontSizes.code))
                         .foregroundColor(Color.gray)
                 }
 
@@ -30,7 +30,7 @@ struct HighlightedCodeBlock: View {
 
                 CopyButton(
                     textToCopy: code,
-                    fontSize: .system(size: 14),
+                    fontSize: .system(size: AppFontSizes.code),
                     helpText: "Copy code"
                 )
             }
@@ -42,7 +42,7 @@ struct HighlightedCodeBlock: View {
 
             // Code content
             CodeText(code)
-                .font(.system(size: 14))
+                .font(.system(size: AppFontSizes.code))
                 .padding(.horizontal, 12)
                 .padding(.vertical, 8)
                 .frame(maxWidth: .infinity, alignment: .leading)

@@ -51,6 +51,9 @@ public struct BotChatBubble: View {
                         .background(Color("BackgroundColor"))
                         .frame(alignment: .leading)
                         .font(.body())
+                        .markdownTextStyle {
+                            FontSize(AppFontSizes.body)
+                        }
                         // Style for links
                         .markdownTextStyle(\.link) {
                             ForegroundColor(Color("AccentColor"))
@@ -58,7 +61,7 @@ public struct BotChatBubble: View {
                         // Style for inline code
                         .markdownTextStyle(\.code) {
                             FontFamilyVariant(.monospaced)
-                            FontSize(.em(0.85))
+                            FontSize(AppFontSizes.body * 0.85)
                             BackgroundColor(Color("Surface").opacity(0.35))
                         }
                         // Style for lists

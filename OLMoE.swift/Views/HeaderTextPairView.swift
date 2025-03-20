@@ -24,12 +24,16 @@ struct HeaderTextPairView : View {
             if !header.isEmpty {
                 Text(header)
                     .font(.subheader())
+                    .fontWeight(.bold)
                     .multilineTextAlignment(.leading)
             }
 
             Markdown(text)
                 .font(.body())
                 .multilineTextAlignment(.leading)
+                .markdownTextStyle {
+                    FontSize(AppFontSizes.body)
+                }
                 .markdownTextStyle(\.link) {
                     ForegroundColor(Color("AccentColor"))
                     UnderlineStyle(.single)
