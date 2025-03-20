@@ -12,7 +12,11 @@ struct InfoButton: View {
     let action: () -> Void
 
     var body: some View {
+        #if targetEnvironment(macCatalyst)
+        ToolbarButton(action: action, systemName: "info.circle", foregroundColor: Color("AccentColor"))
+        #else
         ToolbarButton(action: action, assetName: "InfoIcon", foregroundColor: Color("AccentColor"))
+        #endif
     }
 }
 
