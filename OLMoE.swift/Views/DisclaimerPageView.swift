@@ -127,6 +127,9 @@ struct DisclaimerPage: View {
                     Markdown(message)
                         .font(.body())
                         .multilineTextAlignment(.leading)
+                        .markdownTextStyle {
+                            FontSize(AppFontSizes.body)
+                        }
                         .markdownTextStyle(\.link) {
                             ForegroundColor(Color("AccentColor"))
                             UnderlineStyle(.single)

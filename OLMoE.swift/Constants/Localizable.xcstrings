@@ -38,6 +38,9 @@
     "Clear chat history?" : {
 
     },
+    "Close" : {
+
+    },
     "Copied" : {
 
     },
@@ -118,6 +121,12 @@
     "Sample conversation area" : {
 
     },
+    "Sheet Title" : {
+
+    },
+    "Show Sheet" : {
+
+    },
     "Start Download" : {
 
     },
@@ -128,6 +137,9 @@
 
     },
     "This app needs 8GB of RAM." : {
+
+    },
+    "This content is wrapped in the SheetWrapper and displayed in a sheet." : {
 
     },
     "This device has %@GB available." : {
