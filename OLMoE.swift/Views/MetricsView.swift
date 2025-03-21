@@ -16,7 +16,7 @@ public struct MetricsButton: View {
     let isShowing: Bool
 
     public var body: some View {
-        ToolbarButton(action: action, systemName: isShowing ? "chart.bar.fill" : "chart.bar", foregroundColor: Color("AccentColor"))
+        ToolbarButton(action: action, systemName: isShowing ? "gauge.with.dots.needle.bottom.50percent.badge.minus" : "gauge.with.dots.needle.bottom.50percent.badge.plus", foregroundColor: Color("AccentColor"))
         #if targetEnvironment(macCatalyst)
             .padding(.trailing, 12)
             .padding(.top, 4)

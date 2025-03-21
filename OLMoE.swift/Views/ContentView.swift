@@ -231,7 +231,7 @@ struct BotView: View {
             SpinnerView(color: Color("AccentColor"))
         } else {
             let isDisabled = isSharing || bot.history.isEmpty || isGenerating
-            ToolbarButton(action: {
+            let action = {
                 isTextEditorFocused = false
                 // disclaimerHandlers.setActiveDisclaimer(Disclaimers.ShareDisclaimer())
                 // disclaimerHandlers.setCancelAction({ disclaimerHandlers.setShowDisclaimerPage(false) })
@@ -239,25 +239,40 @@ struct BotView: View {
                 // disclaimerHandlers.setConfirmAction({ shareConversation() })
                 // disclaimerHandlers.setShowDisclaimerPage(true)
                 showTextShareSheet = true
-            }, assetName: "ShareIcon", foregroundColor: Color("AccentColor"))
-             .disabled(isDisabled)
+            }
+
+            #if targetEnvironment(macCatalyst)
+            ToolbarButton(action: action, systemName: "square.and.arrow.up", foregroundColor: Color("AccentColor"))
+                .disabled(isDisabled)
+            #else
+            ToolbarButton(action: action, assetName: "ShareIcon", foregroundColor: Color("AccentColor"))
+                .disabled(isDisabled)
+            #endif
         }
     }
 
     @ViewBuilder
     func newChatButton() -> some View {
-        ToolbarButton(action: {
+        let action = {
             isTextEditorFocused = false
             isDeleteHistoryConfirmationVisible = true
             stop()
-        }, assetName: "NewChatIcon", foregroundColor: Color("LightGreen"))
-            .alert("Clear chat history?", isPresented: $isDeleteHistoryConfirmationVisible, actions: {
-                Button("Clear", action: deleteHistory)
-                Button("Cancel", role: .cancel) {
-                    isDeleteHistoryConfirmationVisible = false
-                }
-            })
-            .disabled(isDeleteButtonDisabled)
+        }
+
+        Group {
+            #if targetEnvironment(macCatalyst)
+            ToolbarButton(action: action, systemName: "plus.app", foregroundColor: Color("LightGreen"))
+            #else
+            ToolbarButton(action: action, assetName: "NewChatIcon", foregroundColor: Color("LightGreen"))
+            #endif
+        }
+        .alert("Clear chat history?", isPresented: $isDeleteHistoryConfirmationVisible, actions: {
+            Button("Clear", action: deleteHistory)
+            Button("Cancel", role: .cancel) {
+                isDeleteHistoryConfirmationVisible = false
+            }
+        })
+        .disabled(isDeleteButtonDisabled)
     }
 
     var body: some View {
