@@ -124,7 +124,7 @@ public struct ChatView: View {
     /// - Returns: A view containing the chat bubbles and other content.
     @ViewBuilder
     private func chatContent(_ proxy: ScrollViewProxy, parentWidth: CGFloat) -> some View {
-        VStack(alignment: .leading, spacing: 10) {
+        VStack(alignment: .leading, spacing: 24) {
             ForEach(Array(history.enumerated()), id: \.element.id) { index, chat in
                 if !chat.content.isEmpty {
                     chatBubble(for: chat, at: index, parentWidth: parentWidth)
