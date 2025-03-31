@@ -9,25 +9,6 @@
 import SwiftUI
 import MarkdownUI
 
-public struct UserChatBubble: View {
-    var text: String
-    var maxWidth: CGFloat
-
-    public var body: some View {
-        HStack(alignment: .top) {
-            Spacer()
-            Text(text.trimmingCharacters(in: .whitespacesAndNewlines))
-                .padding(.vertical, 12)
-                .padding(.horizontal, 20)
-                .background(Color("Surface"))
-                .cornerRadius(24)
-                .frame(maxWidth: maxWidth * 0.75, alignment: .trailing)
-                .font(.body())
-                .textSelection(.enabled)
-        }
-    }
-}
-
 struct ScrollState {
     static let BottomScrollThreshold = 40.0
     static let ScrollSpaceName: String = "scrollSpace"
