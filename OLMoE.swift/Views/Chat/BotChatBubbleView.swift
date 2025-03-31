@@ -47,12 +47,13 @@ public struct BotChatBubble: View {
                 VStack(alignment: .leading) {
                     // Markdown content with styling
                     Markdown(textWithGeneratingIndicator)
-                        .padding(.top, -2)
+                        .padding(.top, textWithGeneratingIndicator == "..." ? -2 : 2)
                         .background(Color("BackgroundColor"))
                         .frame(alignment: .leading)
                         .font(.body())
                         .markdownTextStyle {
                             FontSize(AppFontSizes.body)
+                            ForegroundColor(Color("TextColor"))
                         }
                         // Style for links
                         .markdownTextStyle(\.link) {
@@ -62,7 +63,7 @@ public struct BotChatBubble: View {
                         .markdownTextStyle(\.code) {
                             FontFamilyVariant(.monospaced)
                             FontSize(AppFontSizes.body * 0.85)
-                            BackgroundColor(Color("Surface").opacity(0.35))
+                            BackgroundColor(Color("Surface"))
                         }
                         // Style for lists
                         .markdownNumberedListMarker(
@@ -95,7 +96,7 @@ public struct BotChatBubble: View {
                             )
 
                             return HighlightedCodeBlock(code: cleanCode, language: configuration.language)
-                                .markdownMargin(top: 8, bottom: 8)
+                                .markdownMargin(top: 12, bottom: 18)
                                 .contextMenu {
                                     Button(action: {
                                         UIPasteboard.general.string = cleanCode
