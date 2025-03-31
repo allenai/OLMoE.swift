@@ -53,6 +53,7 @@ public struct BotChatBubble: View {
                         .font(.body())
                         .markdownTextStyle {
                             FontSize(AppFontSizes.body)
+                            ForegroundColor(Color("TextColor"))
                         }
                         // Style for links
                         .markdownTextStyle(\.link) {
