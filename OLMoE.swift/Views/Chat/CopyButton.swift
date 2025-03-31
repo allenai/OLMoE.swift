@@ -36,8 +36,14 @@ struct CopyButton: View {
             copyToClipboard()
         }) {
             HStack(spacing: 4) {
-                Image(systemName: showCopyFeedback ? "checkmark" : "doc.on.doc")
-                    .font(fontSize)
+                if showCopyFeedback {
+                    Image(systemName: "checkmark")
+                        .foregroundColor(Color("AccentColor"))
+                        .font(fontSize)
+                } else {
+                    Image("CopyIcon")
+                        .font(fontSize)
+                }
 
                 if showLabel && showCopyFeedback {
                     Text("Copied")
