@@ -63,7 +63,7 @@ public struct BotChatBubble: View {
                         .markdownTextStyle(\.code) {
                             FontFamilyVariant(.monospaced)
                             FontSize(AppFontSizes.body * 0.85)
-                            BackgroundColor(Color("InlineCodeColor"))
+                            BackgroundColor(Color("Surface"))
                         }
                         // Style for lists
                         .markdownNumberedListMarker(

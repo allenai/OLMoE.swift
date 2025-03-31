@@ -36,7 +36,7 @@ struct HighlightedCodeBlock: View {
             }
             .padding(.horizontal, 12)
             .padding(.vertical, 8)
-            .background(Color("Surface").opacity(0.70))
+            .background(Color("Surface"))
             .cornerRadius(15, corners: [.topLeft, .topRight])
             .cornerRadius(3, corners: [.bottomLeft, .bottomRight])
 
@@ -46,7 +46,7 @@ struct HighlightedCodeBlock: View {
                 .padding(.horizontal, 12)
                 .padding(.vertical, 8)
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .background(Color("Surface").opacity(0.70))
+                .background(Color("Surface"))
                 .cornerRadius(3, corners: [.topLeft, .topRight])
                 .cornerRadius(15, corners: [.bottomLeft, .bottomRight])
         }
