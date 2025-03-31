@@ -371,10 +371,38 @@ public struct ChatView: View {
     .background(Color("BackgroundColor"))
 }
 
-#Preview("BotChatBubble") {
-    BotChatBubble(text: "Welcome chat message", maxWidth: UIScreen.main.bounds.width)
-}
+#Preview("JavaScript Example") {
+    let exampleHistory: [Chat] = [
+        Chat(role: .user, content: "Now write a JavaScript function to sort an array"),
+        Chat(role: .bot, content: """
+        Here's a simple JavaScript function to sort an array using the built-in `Array.prototype.sort()` method. This function sorts the array in ascending order based on the natural ordering of elements (e.g., strings are sorted lexicographically, and numbers are sorted numerically).
 
-#Preview("UserChatBubble") {
-    UserChatBubble(text: "Hello Ai, please help me with your knowledge.", maxWidth: UIScreen.main.bounds.width)
+        ```javascript
+        function sortArray(array) {
+            return array.sort();
+        }
+
+        // Example usage:
+
+        let fruits = ["apple", "banana", "cherry", "date", "elderberry"];
+        console.log(sortArray(fruits));
+        // Outputs: ["apple", "banana", "cherry", "date", "elderberry"]
+        ```
+
+        #### Explanation:
+        - `sort()`: This is a method on arrays that sorts the elements of an array in place and returns the array. It uses a comparison function to determine the order of elements. If no comparison function is specified, it uses the default sorting behavior which sorts elements as strings.
+        """),
+    ]
+
+    ChatView(
+        history: exampleHistory,
+        output: "",
+        metrics: InferenceMetrics(),
+        showMetrics: .constant(true),
+        isGenerating: .constant(false),
+        isScrolledToBottom: .constant(true),
+        stopSubmitted: .constant(false)
+    )
+    .padding(12)
+    .background(Color("BackgroundColor"))
 }

@@ -47,7 +47,7 @@ public struct BotChatBubble: View {
                 VStack(alignment: .leading) {
                     // Markdown content with styling
                     Markdown(textWithGeneratingIndicator)
-                        .padding(.top, -2)
+                        .padding(.top, textWithGeneratingIndicator == "..." ? -2 : 2)
                         .background(Color("BackgroundColor"))
                         .frame(alignment: .leading)
                         .font(.body())
@@ -96,7 +96,7 @@ public struct BotChatBubble: View {
                             )
 
                             return HighlightedCodeBlock(code: cleanCode, language: configuration.language)
-                                .markdownMargin(top: 8, bottom: 8)
+                                .markdownMargin(top: 12, bottom: 18)
                                 .contextMenu {
                                     Button(action: {
                                         UIPasteboard.general.string = cleanCode
