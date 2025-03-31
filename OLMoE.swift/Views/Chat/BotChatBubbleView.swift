@@ -103,7 +103,7 @@ public struct BotChatBubble: View {
                                         let generator = UIImpactFeedbackGenerator(style: .light)
                                         generator.impactOccurred()
                                     }) {
-                                        Label("Copy Code", systemImage: "doc.on.doc")
+                                        Label("Copy Code", image: "CopyIcon")
                                     }
                                 }
                         }
