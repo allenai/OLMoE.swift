@@ -36,52 +36,55 @@ public struct MetricsView: View {
     }
 
     public var body: some View {
-        VStack(alignment: .leading, spacing: 4) {
-            HStack {
-                Text("Tokens:")
-                    .font(.caption.bold())
-                Spacer()
-                Text("\(metrics.totalTokens) total")
-                    .font(.caption)
-            }
-
-            HStack {
-                Image(systemName: "keyboard")
-                    .font(.caption)
-                Text("\(metrics.inputTokenCount) input")
-                    .font(.caption)
-                Spacer()
-                Image(systemName: "text.bubble")
-                    .font(.caption)
-                Text("\(metrics.inferenceTokenCount) output")
-                    .font(.caption)
-            }
-
-            if metrics.endTime > metrics.startTime {
+        ZStack {
+            VStack(alignment: .leading, spacing: 4) {
                 HStack {
-                    Image(systemName: "speedometer")
-                        .font(.caption)
-                    Text(String(format: "%.2f tokens/sec", metrics.inferenceTokensPerSecond))
-                        .font(.caption)
+                    Text("Tokens:")
+                        .font(.caption.bold())
                     Spacer()
-                    Image(systemName: "clock")
-                        .font(.caption)
-                    let duration = metrics.endTime - metrics.startTime
-                    Text(String(format: "%.1fs", duration))
+                    Text("\(metrics.totalTokens) total")
                         .font(.caption)
                 }
+
+                HStack {
+                    Image(systemName: "keyboard")
+                        .font(.caption)
+                    Text("\(metrics.inputTokenCount) input")
+                        .font(.caption)
+                    Spacer()
+                    Image(systemName: "text.bubble")
+                        .font(.caption)
+                    Text("\(metrics.inferenceTokenCount) output")
+                        .font(.caption)
+                }
+
+                if metrics.endTime > metrics.startTime {
+                    HStack {
+                        Image(systemName: "speedometer")
+                            .font(.caption)
+                        Text(String(format: "%.2f tokens/sec", metrics.inferenceTokensPerSecond))
+                            .font(.caption)
+                        Spacer()
+                        Image(systemName: "clock")
+                            .font(.caption)
+                        let duration = metrics.endTime - metrics.startTime
+                        Text(String(format: "%.1fs", duration))
+                            .font(.caption)
+                    }
+                }
             }
+            .padding(.horizontal, 34)
+            .padding(.vertical, 12)
         }
-        .padding(10)
-        .background(Color("Surface").opacity(0.8))
-        .cornerRadius(8)
-        .padding(.horizontal)
+        .background(Color("MetricsBgColor"))
+        .padding(.horizontal, -12)
+        .padding(.top, -11)
         .padding(.bottom, 8)
     }
 }
 
 struct MetricsTogglePreview: View {
-    @State private var showMetrics = false
+    @State private var showMetrics = true
 
     let sampleMetrics: InferenceMetrics = {
         var metrics = InferenceMetrics()
@@ -120,17 +123,15 @@ struct MetricsTogglePreview: View {
                     VStack(alignment: .leading, spacing: 15) {
                         Text("Sample conversation area")
                             .font(.headline)
-                            .padding()
 
                         Text("Tap the metrics button in the toolbar to toggle metrics visibility.")
                             .font(.body)
-                            .padding()
                     }
                     .frame(maxWidth: .infinity)
                 }
             }
             .animation(.easeInOut(duration: 0.2), value: showMetrics)
-
+            .padding(12)
             Spacer()
         }
         .frame(height: 400)

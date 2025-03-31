@@ -325,7 +325,6 @@ public struct ChatView: View {
         isScrolledToBottom: .constant(true),
         stopSubmitted: .constant(false)
     )
-    .padding(12)
     .background(Color("BackgroundColor"))
 }
 
