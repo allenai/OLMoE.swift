@@ -12,21 +12,27 @@ struct ToolbarButton: View {
     let systemName: String?
     let assetName: String?
     let foregroundColor: Color?
+    let width: CGFloat?
+    let height: CGFloat?
     @State private var isHovering = false
     @Environment(\.isEnabled) private var isEnabled
 
-    init(action: @escaping () -> Void, systemName: String, foregroundColor: Color? = Color("TextColor")) {
+    init(action: @escaping () -> Void, systemName: String, foregroundColor: Color? = Color("TextColor"), width: CGFloat? = nil, height: CGFloat? = nil) {
         self.action = action
         self.systemName = systemName
         self.assetName = nil
         self.foregroundColor = foregroundColor
+        self.width = width
+        self.height = height
     }
 
-    init(action: @escaping () -> Void, assetName: String, foregroundColor: Color? = Color("TextColor")) {
+    init(action: @escaping () -> Void, assetName: String, foregroundColor: Color? = Color("TextColor"), width: CGFloat? = nil, height: CGFloat? = nil) {
         self.action = action
         self.systemName = nil
         self.assetName = assetName
         self.foregroundColor = foregroundColor
+        self.width = width
+        self.height = height
     }
 
     var body: some View {
@@ -36,11 +42,14 @@ struct ToolbarButton: View {
                     Image(systemName: systemName)
                 } else if let asset = assetName {
                     Image(asset)
+                        .resizable()
+                        .scaledToFit()
                 }
             }
             #if targetEnvironment(macCatalyst)
                 .foregroundColor(isEnabled ? Color("MacIconColor") : Color("MacIconColor").opacity(0.5))
                 .fontWeight(.bold)
+                .frame(width: width, height: height)
                 .padding(.vertical, 4)
                 .padding(.horizontal, 8)
                 .background(isHovering ? Color.gray.opacity(0.2) : Color.clear)
