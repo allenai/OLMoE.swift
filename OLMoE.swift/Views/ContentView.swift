@@ -424,7 +424,7 @@ struct ContentView: View {
     @State private var useMockedModelResponse: Bool = false
 
     /// A flag indicating whether to show metrics.
-    @State private var showMetrics: Bool = false
+    @State private var showMetrics: Bool = true
 
     /// Logger for tracking events in the ContentView.
     let logger = Logger(subsystem: "com.allenai.olmoe", category: "ContentView")
@@ -468,14 +468,14 @@ struct ContentView: View {
                     AppToolbar(
                         leadingContent: {
                             HStack(alignment: .bottom, spacing: 20) {
-                                // Info button
-                                InfoButton(action: { showInfoPage = true })
-
-                                // Metrics toggle button - now using the MetricsButton component
+                                // Metrics toggle button
                                 MetricsButton(
                                     action: { showMetrics.toggle() },
                                     isShowing: showMetrics
                                 )
+                                
+                                // Info button
+                                InfoButton(action: { showInfoPage = true })
                             }
                         }
                     )
