@@ -14,6 +14,9 @@ struct InfoButton: View {
     var body: some View {
         #if targetEnvironment(macCatalyst)
         ToolbarButton(action: action, systemName: "info.circle", foregroundColor: Color("AccentColor"))
+            .padding(.leading, 2)
+            .padding(.trailing, 12)
+            .padding(.bottom, -2)
         #else
         ToolbarButton(action: action, assetName: "InfoIcon", foregroundColor: Color("AccentColor"))
         #endif
