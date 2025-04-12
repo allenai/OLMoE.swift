@@ -19,7 +19,7 @@ public struct BotChatBubble: View {
     var hideCopyButton: Bool = false
 
     private var copyButtonIsVisible: Bool {
-        !hideCopyButton && !isGenerating && text != "..."
+        !hideCopyButton && !isGenerating && text != AppConstants.UnableToAnswerMessage
     }
 
     private var textWithGeneratingIndicator: String {
@@ -47,7 +47,7 @@ public struct BotChatBubble: View {
                 VStack(alignment: .leading) {
                     // Markdown content with styling
                     Markdown(textWithGeneratingIndicator)
-                        .padding(.top, textWithGeneratingIndicator == "..." ? -2 : 2)
+                        .padding(.top, textWithGeneratingIndicator == AppConstants.UnableToAnswerMessage ? -2 : 2)
                         .background(Color("BackgroundColor"))
                         .frame(alignment: .leading)
                         .font(.body())
@@ -139,7 +139,7 @@ public struct BotChatBubble: View {
             )
 
             BotChatBubble(
-                text: "...",
+                text: AppConstants.UnableToAnswerMessage,
                 maxWidth: UIScreen.main.bounds.width
             )
 

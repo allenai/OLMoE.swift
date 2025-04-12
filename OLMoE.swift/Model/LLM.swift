@@ -457,13 +457,13 @@ open class LLM: ObservableObject {
 
             self.rollbackLastUserInputIfEmptyResponse(trimmedOutput)
 
-            await setOutput(to: trimmedOutput.isEmpty ? "..." : trimmedOutput)
+            await setOutput(to: trimmedOutput)
             return output
         }
     }
 
-    /// If the model fails to produce a response (empty output), remove the last user input’s tokens
-    /// from the KV cache to prevent the model’s internal state from being "poisoned" by bad input.
+    /// If the model fails to produce a response (empty output), remove the last user input's tokens
+    /// from the KV cache to prevent the model's internal state from being "poisoned" by bad input.
     private func rollbackLastUserInputIfEmptyResponse(_ response: String) {
         if response.isEmpty && self.inputTokenCount > 0 {
             let seq_id = Int32(0)

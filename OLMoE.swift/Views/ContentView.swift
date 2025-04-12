@@ -92,7 +92,18 @@ struct BotView: View {
         // Add the user message to history immediately
         bot.history.append(Chat(role: .user, content: originalInput))
         Task {
-            await bot.respond(to: originalInput)
+            for attempt in 1...AppConstants.maxResponseAttempts {
+                await bot.respond(to: originalInput)
+
+                if !bot.output.isEmpty || stopSubmitted {
+                    break
+                }
+
+                if attempt >= AppConstants.maxResponseAttempts {
+                    bot.history.append(Chat(role: .bot, content: AppConstants.UnableToAnswerMessage))
+                }
+            }
+
             await MainActor.run {
                 bot.setOutput(to: "")
                 isGenerating = false
@@ -473,7 +484,7 @@ struct ContentView: View {
                                     action: { showMetrics.toggle() },
                                     isShowing: showMetrics
                                 )
-                                
+
                                 // Info button
                                 InfoButton(action: { showInfoPage = true })
                             }

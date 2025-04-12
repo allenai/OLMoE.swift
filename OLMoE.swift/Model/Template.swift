@@ -86,7 +86,10 @@ public struct Template {
                 if let systemPrompt {
                     processed += "\(system.prefix)\(systemPrompt)\(system.suffix)"
                 }
-                for chat in history {
+                // Create a new array without the last chat since we're adding current input separately
+                let historyWithoutLast = history.dropLast()
+
+                for chat in historyWithoutLast {
                     if chat.role == .user {
                         processed += "\(user.prefix)\(chat.content)\(user.suffix)"
                     } else {

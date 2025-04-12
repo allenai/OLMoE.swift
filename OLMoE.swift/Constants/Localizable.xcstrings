@@ -139,6 +139,17 @@
     "Try OLMoE at the Ai2 Playground" : {
 
     },
+    "UnableToAnswerMessage" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I'm sorry. Unable to provide an answer. Please try rephrasing your question or ask something else."
+          }
+        }
+      }
+    },
     "Welcome" : {
 
     },
