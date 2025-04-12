@@ -16,8 +16,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A0117FE72C990EAB00035007"
-               BuildableName = "OLMoE.swift.app"
-               BlueprintName = "OLMoE.swift"
+               BuildableName = "OLMoE.app"
+               BlueprintName = "OLMoE"
                ReferencedContainer = "container:OLMoE.swift.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -47,8 +47,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A0117FE72C990EAB00035007"
-            BuildableName = "OLMoE.swift.app"
-            BlueprintName = "OLMoE.swift"
+            BuildableName = "OLMoE.app"
+            BlueprintName = "OLMoE"
             ReferencedContainer = "container:OLMoE.swift.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -71,8 +71,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A0117FE72C990EAB00035007"
-            BuildableName = "OLMoE.swift.app"
-            BlueprintName = "OLMoE.swift"
+            BuildableName = "OLMoE.app"
+            BlueprintName = "OLMoE"
             ReferencedContainer = "container:OLMoE.swift.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
