@@ -71,6 +71,7 @@ public struct MetricsView: View {
             }
             .padding(.horizontal, 34)
             .padding(.vertical, 12)
+            .frame(minHeight: 75)
         }
         .background(Color("MetricsBgColor"))
         .padding(.horizontal, -12)
