@@ -40,7 +40,7 @@
 		48B806342CF54D9600E1CC0A /* LambdaResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LambdaResponseModel.swift; sourceTree = "<group>"; };
 		48E37C1F2D02715B0030C57C /* KeyboardResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardResponder.swift; sourceTree = "<group>"; };
 		58A7F8BB2D4C16F20041AA70 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		A0117FE82C990EAB00035007 /* OLMoE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OLMoE.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0117FE82C990EAB00035007 /* Ai2 OLMoE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ai2 OLMoE.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0117FEB2C990EAB00035007 /* OLMoE_swiftApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OLMoE_swiftApp.swift; sourceTree = "<group>"; };
 		A0117FEF2C990EAC00035007 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A0117FF12C990EAC00035007 /* OLMoE_swift.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OLMoE_swift.entitlements; sourceTree = "<group>"; };
@@ -98,7 +98,7 @@
 		A0117FE92C990EAB00035007 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A0117FE82C990EAB00035007 /* OLMoE.app */,
+				A0117FE82C990EAB00035007 /* Ai2 OLMoE.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -156,9 +156,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A0117FE72C990EAB00035007 /* OLMoE */ = {
+		A0117FE72C990EAB00035007 /* Ai2 OLMoE */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A0117FF72C990EAC00035007 /* Build configuration list for PBXNativeTarget "OLMoE" */;
+			buildConfigurationList = A0117FF72C990EAC00035007 /* Build configuration list for PBXNativeTarget "Ai2 OLMoE" */;
 			buildPhases = (
 				A0117FE42C990EAB00035007 /* Sources */,
 				A0117FE52C990EAB00035007 /* Frameworks */,
@@ -176,14 +176,14 @@
 				B26FDB412CEAD48600E1D57C /* Resources */,
 				B26FDB422CEAD48F00E1D57C /* Views */,
 			);
-			name = OLMoE;
+			name = "Ai2 OLMoE";
 			packageProductDependencies = (
 				A0117FFE2C990F5600035007 /* llama */,
 				48952DEF2D4D69D400476373 /* MarkdownUI */,
 				48779B142D80A17200C446E8 /* HighlightSwift */,
 			);
 			productName = OLMoE.swift;
-			productReference = A0117FE82C990EAB00035007 /* OLMoE.app */;
+			productReference = A0117FE82C990EAB00035007 /* Ai2 OLMoE.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -222,7 +222,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A0117FE72C990EAB00035007 /* OLMoE */,
+				A0117FE72C990EAB00035007 /* Ai2 OLMoE */,
 			);
 		};
 /* End PBXProject section */
@@ -502,7 +502,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A0117FF72C990EAC00035007 /* Build configuration list for PBXNativeTarget "OLMoE" */ = {
+		A0117FF72C990EAC00035007 /* Build configuration list for PBXNativeTarget "Ai2 OLMoE" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A0117FF82C990EAC00035007 /* Debug */,
